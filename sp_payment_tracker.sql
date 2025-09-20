@@ -10,7 +10,7 @@ BEGIN
   MERGE `project_name.payment_set_dw.dw_payment_tracker` T
   USING(
       SELECT 
-      CAST(user_name || '-' || event_data || '-' || region AS STRING) AS integration_id,
+      CONCAT(user_name, '-', event_data, '-', region) AS integration_id,
       user_name,
       event_data,
       amount,
