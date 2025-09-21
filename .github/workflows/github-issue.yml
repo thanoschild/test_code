@@ -1,0 +1,30 @@
+name: Issue to Cloud Run (Public)
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  call-cloud-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install requests
+        run: pip install requests
+
+      - name: Run Python script
+        env:
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          REPO_NAME: ${{ github.repository }}
+          CLOUD_RUN_URL: ${{ secrets.CLOUD_RUN_URL }}
+        run: python scripts/trigger_cloudrun.py
