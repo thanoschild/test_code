@@ -27,4 +27,4 @@ jobs:
           ISSUE_BODY: ${{ github.event.issue.body }}
           REPO_NAME: ${{ github.repository }}
           CLOUD_RUN_URL: ${{ secrets.CLOUD_RUN_URL }}
-        run: python scripts/trigger_cloudrun.py
+        run: python ./scripts/trigger_cloudrun.py
