@@ -14,7 +14,7 @@ def main():
     print("cloud run url: " + cloud_run_url)
     github_issue_endpoint = urljoin(cloud_run_url.rstrip("/") + "/", "api/v1/issues/github")
 
-    response = requests.post(github_issue_endpoint, json=payload)
+    response = requests.post("https://smart-pr-service-195937916746.us-west1.run.app/api/v1/issues/github", json=payload)
     print("Cloud Run response:", response.status_code, response.text)
     response.raise_for_status()
 
