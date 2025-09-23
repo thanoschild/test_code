@@ -3,7 +3,6 @@ CREATE TABLE IF NOT EXISTS `project_name.contact_raw.contact_table` (
   `first_name` STRING,
   `last_name` STRING,
   `email` STRING,
-  `phone_number` STRING,
   `location` STRING,
   `age` INT64,
   `gender` STRING,
