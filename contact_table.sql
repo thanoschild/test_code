@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS `project_name.contact_raw.contact_table` (
+CREATE TABLE IF NOT EXISTS `project_name.contact_raw.contract_table` (
   `contact_id` STRING,
   `first_name` STRING,
   `last_name` STRING,
