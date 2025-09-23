@@ -11,6 +11,7 @@ CREATE TABLE IF NOT EXISTS `project_name.contact_raw.contact_table` (
   `is_active` BOOL,
   `company` STRING,
   `job_title` STRING,
+  `website` STRING,
   `source` STRING,
   `purpose` STRING,
   `created_at` TIMESTAMP,
