@@ -1,0 +1,20 @@
+name: Print PR Review Comment Details
+
+on:
+  pull_request_review_comment:
+    types: [created]
+
+jobs:
+  print-details:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print PR review comment details
+        run: |
+          echo "PR Number: ${{ github.event.pull_request.number }}"
+          echo "Repository: ${{ github.repository }}"
+          echo "Branch (head): ${{ github.event.pull_request.head.ref }}"
+          echo "Target branch (base): ${{ github.event.pull_request.base.ref }}"
+          echo "Commit ID: ${{ github.event.comment.commit_id }}"
+          echo "File: ${{ github.event.comment.path }}"
+          echo "Line: ${{ github.event.comment.position }}"
+          echo "Comment: ${{ github.event.comment.body }}"
