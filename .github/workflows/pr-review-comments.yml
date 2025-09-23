@@ -17,3 +17,4 @@ jobs:
           echo "Reviewer: ${{ github.event.review.user.login }}"
           echo "Review State: ${{ github.event.review.state }}"
           echo "Review Body: ${{ github.event.review.body }}"
+          echo "PR URL: ${{ github.event.pull_request.html_url }}"
