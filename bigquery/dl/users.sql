@@ -1,6 +1,7 @@
 CREATE TABLE `project_name.helix_agiloft_dl.users` (
   user_id STRING(50) NOT NULL,
   company_id STRING(50) NOT NULL,
+  employee_id STRING(50),
   username STRING(100) NOT NULL,
   email_address STRING(255) NOT NULL,
   first_name STRING(100),
