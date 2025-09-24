@@ -7,7 +7,6 @@ CREATE TABLE `project_name.helix_agiloft_raw.clauses` (
   is_standard_clause BOOLEAN DEFAULT FALSE,
   compliance_required BOOLEAN DEFAULT FALSE,
   effective_date DATE,
-  expiration_date DATE,
   created_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
   last_updated_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
   `_metadata_insert_time` TIMESTAMP,
