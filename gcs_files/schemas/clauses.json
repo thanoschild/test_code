@@ -1,6 +1,5 @@
 [
   {"name": "clause_id",             "type": "STRING",   "mode": "REQUIRED"},
-  {"name": "contract_id",           "type": "STRING",   "mode": "REQUIRED"},
   {"name": "clause_type",           "type": "STRING",   "mode": "REQUIRED"},
   {"name": "clause_title",          "type": "STRING",   "mode": "NULLABLE"},
   {"name": "clause_text",           "type": "STRING",   "mode": "NULLABLE"},
