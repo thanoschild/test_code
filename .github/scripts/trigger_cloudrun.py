@@ -12,7 +12,7 @@ def main():
 
     cloud_run_url = os.environ["CLOUD_RUN_URL"]
     print("cloud run url: " + cloud_run_url)
-    github_issue_endpoint = urljoin(cloud_run_url.rstrip("/") + "/", "api/v1/issues/github")
+    github_issue_endpoint = urljoin(cloud_run_url.rstrip("/") + "/", "api/v1/github/issues")
 
     response = requests.post(github_issue_endpoint, json=payload)
     print("Cloud Run response:", response.status_code, response.text)
