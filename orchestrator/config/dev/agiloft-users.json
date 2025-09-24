@@ -1,0 +1,80 @@
+
+{
+    "dag_config": {
+        "dag_id": "agiloft-users",
+        "schedule_interval": null,
+        "sla_in_minutes": 180,
+        "email": ["sherin@gmail.com"]
+    },
+    "task_config": {
+        "airflow_variable_id_for_impersonation_chain": "helix-agiloft-impersonation-chain-json-list",
+        "data_project_id": "helix-data-dev",
+        "tasks": [
+            {
+                "task_name": "fetch-from-source-users",
+                "task_type": "EXECUTION",
+                "template_reference": "AGILOFT_CF",
+                "config": {
+                    "table": "users",
+                    "gcs_path": "gs://helix-agiloft-data-dev/ingestion/users",
+                    "client_id": "ah91bh709ldright1",
+                    "secret_key": "agiloft-dev-secret",
+                    "columns": "user_id, company_id, username, email_address, first_name, last_name, role, department, is_active, created_timestamp, last_login_timestamp",
+                    "api_endpoint": "https://mycompany.com/agiloft/tables/users"
+                },
+                "downstream_tasks": ["gcs2bq-agiloft-users"]
+            },
+            {
+                "task_name": "gcs2bq-agiloft-users",
+                "task_type": "EXECUTION",
+                "template_reference": "GCS2BQ",
+                "config": {
+                    "bucket": "helix-agiloft-data-dev",
+                    "source_objects": [
+                        "ingestion/users/*.json"
+                    ],
+                    "schema_object_bucket": "helix-agiloft-platform-dev",
+                    "schema_object": "schemas/users.json",
+                    "destination_project_dataset_table": "helix-data-dev.helix_agiloft_stg.users"
+                },
+                "downstream_tasks": ["stg-to-raw-agiloft-users"]
+            },
+            {
+                "task_name": "stg-to-raw-agiloft-users",
+                "task_type": "MERGE",
+                "template_reference": "RAW_DL_UPDATE",
+                "config": {
+                    "stg_table": "helix-data-dev.helix_agiloft_stg.users",
+                    "dl_table": "helix-data-dev.helix_agiloft_dl.users",
+                    "raw_table": "helix-data-dev.helix_agiloft_raw.users",
+                    "primary_key_columns": "clause_id"
+                }
+            }
+        ]
+    },
+    "temp;ate_config": {
+        "merge_templates": [
+            {
+                "template_id": "RAW_DL_UPDATE",
+                "merge_type": "MERGE_UPDATE",
+                "config": {
+                    "truncate_stg_table": "False"
+                }
+            }
+        ],
+
+        "execution_templates": [
+            {
+                "template_id": "AGILOFT_CF",
+                "execution_type": "AUTHENTICATED_CLOUD_FUNCTION",
+                "config": {
+                    "method": "POST",
+                    "url": "https://us-west1-it-helix-platform-dev.cloudfunction.net/agiloft-ingestion",
+                    "headers": {
+                        "Content-Type": "application/json"
+                    }
+                }
+            }
+        ]
+    }
+}

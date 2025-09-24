@@ -1,0 +1,80 @@
+
+{
+    "dag_config": {
+        "dag_id": "agiloft-contract",
+        "schedule_interval": null,
+        "sla_in_minutes": 180,
+        "email": ["sherin@gmail.com"]
+    },
+    "task_config": {
+        "airflow_variable_id_for_impersonation_chain": "helix-agiloft-impersonation-chain-json-list",
+        "data_project_id": "helix-data-dev",
+        "tasks": [
+            {
+                "task_name": "fetch-from-source-contract",
+                "task_type": "EXECUTION",
+                "template_reference": "AGILOFT_CF",
+                "config": {
+                    "table": "contract",
+                    "gcs_path": "gs://helix-agiloft-data-dev/ingestion/contract",
+                    "client_id": "ah91bh709ldright1",
+                    "secret_key": "agiloft-dev-secret",
+                    "columns": "contract_id, company_id, contract_name, contract_type, contract_value, start_date, end_date, contract_status, renewal_required, created_timestamp, last_updated_timestamp",
+                    "api_endpoint": "https://mycompany.com/agiloft/tables/contract"
+                },
+                "downstream_tasks": ["gcs2bq-agiloft-contract"]
+            },
+            {
+                "task_name": "gcs2bq-agiloft-contract",
+                "task_type": "EXECUTION",
+                "template_reference": "GCS2BQ",
+                "config": {
+                    "bucket": "helix-agiloft-data-dev",
+                    "source_objects": [
+                        "ingestion/contract/*.json"
+                    ],
+                    "schema_object_bucket": "helix-agiloft-platform-dev",
+                    "schema_object": "schemas/contract.json",
+                    "destination_project_dataset_table": "helix-data-dev.helix_agiloft_stg.contract"
+                },
+                "downstream_tasks": ["stg-to-raw-agiloft-contract"]
+            },
+            {
+                "task_name": "stg-to-raw-agiloft-contract",
+                "task_type": "MERGE",
+                "template_reference": "RAW_DL_UPDATE",
+                "config": {
+                    "stg_table": "helix-data-dev.helix_agiloft_stg.contract",
+                    "dl_table": "helix-data-dev.helix_agiloft_dl.contract",
+                    "raw_table": "helix-data-dev.helix_agiloft_raw.contract",
+                    "primary_key_columns": "clause_id"
+                }
+            }
+        ]
+    },
+    "template_config": {
+        "merge_templates": [
+            {
+                "template_id": "RAW_DL_UPDATE",
+                "merge_type": "MERGE_UPDATE",
+                "config": {
+                    "truncate_stg_table": "False"
+                }
+            }
+        ],
+
+        "execution_templates": [
+            {
+                "template_id": "AGILOFT_CF",
+                "execution_type": "AUTHENTICATED_CLOUD_FUNCTION",
+                "config": {
+                    "method": "POST",
+                    "url": "https://us-west1-it-helix-platform-dev.cloudfunction.net/agiloft-ingestion",
+                    "headers": {
+                        "Content-Type": "application/json"
+                    }
+                }
+            }
+        ]
+    }
+}

@@ -1,0 +1,12 @@
+[
+  {"name": "company_id",         "type": "STRING",   "mode": "REQUIRED"},
+  {"name": "company_name",       "type": "STRING",   "mode": "REQUIRED"},
+  {"name": "industry",           "type": "STRING",   "mode": "NULLABLE"},
+  {"name": "headquarters_location", "type": "STRING","mode": "NULLABLE"},
+  {"name": "annual_revenue",     "type": "NUMERIC",  "mode": "NULLABLE"},
+  {"name": "employee_count",     "type": "INT64",    "mode": "NULLABLE"},
+  {"name": "incorporation_date", "type": "DATE",     "mode": "NULLABLE"},
+  {"name": "company_status",     "type": "STRING",   "mode": "NULLABLE"},
+  {"name": "created_timestamp",  "type": "TIMESTAMP","mode": "NULLABLE"},
+  {"name": "last_updated_timestamp", "type": "TIMESTAMP","mode": "NULLABLE"}
+]

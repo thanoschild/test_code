@@ -1,0 +1,33 @@
+{
+  "bigquery": {
+    "all-tables": {
+      "component": "all-tables",
+      "path": "bigquery",
+      "deploy": "true",
+      "execution_order": "stg raw dl"
+    }
+  },
+
+  "cloud-function": {
+    "agiloft-ingestion": {
+      "job_name": "agiloft-ingestion",
+      "region": "us-west1",
+      "trigger": "http",
+      "gen": "2",
+      "runtime": "python39",
+      "execution_function": "ingest_handler",
+      "timeout": "540s",
+      "memory": "512MB",
+      "deploy": "true",
+      "path": "cloud-function"
+    }
+  },
+
+  "gcs": {
+    "stg_schemas": {
+      "path": "gcs_files",
+      "target": "gs://helix-agiloft-platform-dev/schemas",
+      "deploy": "true"
+    }
+  }
+}
