@@ -1,0 +1,46 @@
+{
+    "data": {
+        "repository": {
+            "pullRequest": {
+                "reviewThreads": {
+                    "nodes": [
+                        {
+                            "id": "PRRT_kwDOPwD4rs5bl6Fv",
+                            "isResolved": false,
+                            "comments": {
+                                "nodes": [
+                                    {
+                                        "id": "PRRC_kwDOPwD4rs6NdUpB",
+                                        "body": "checking",
+                                        "path": "contact_table.sql",
+                                        "diffHunk": "",
+                                        "author": {
+                                            "login": "thanoschild"
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "id": "PRRT_kwDOPwD4rs5boVAY",
+                            "isResolved": true,
+                            "comments": {
+                                "nodes": [
+                                    {
+                                        "id": "PRRC_kwDOPwD4rs6NhGwI",
+                                        "body": "The second review comment",
+                                        "path": "contact_table.sql",
+                                        "diffHunk": "@@ -3,7 +3,6 @@ CREATE TABLE IF NOT EXISTS `project_name.contact_raw.contact_table` (\n   `first_name` STRING,\n   `last_name` STRING,\n   `email` STRING,\n-  `phone_number` STRING,\n   `location` STRING,\n   `age` INT64,\n   `gender` STRING,",
+                                        "author": {
+                                            "login": "thanoschild"
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}

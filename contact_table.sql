@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS `project_name.contact_raw.contact_table` (
   `job_title` STRING,
   `source` STRING,
   `purpose` STRING,
+  `AADHAAR_CARD_NUMBER` STRING
   `created_at` TIMESTAMP,
   `updated_at` TIMESTAMP
 );
