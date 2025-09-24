@@ -1,0 +1,10 @@
+curl -X POST \
+  http://localhost:8080/api/v1/github/issues \
+  -H "Accept: application/json" \
+  -H "Content-Type: application/json" \
+  --data '{
+    "issue_number": "123",
+    "title": "Column phone_number not found inside the contact_table", 
+    "body": "Column phone_number not found inside the contact_table",
+    "repo": "thanoschild/test_code"
+  }'

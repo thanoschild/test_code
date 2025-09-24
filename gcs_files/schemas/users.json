@@ -1,0 +1,13 @@
+[
+  {"name": "user_id",              "type": "STRING",   "mode": "REQUIRED"},
+  {"name": "company_id",           "type": "STRING",   "mode": "REQUIRED"},
+  {"name": "username",             "type": "STRING",   "mode": "REQUIRED"},
+  {"name": "email_address",        "type": "STRING",   "mode": "REQUIRED"},
+  {"name": "first_name",           "type": "STRING",   "mode": "NULLABLE"},
+  {"name": "last_name",            "type": "STRING",   "mode": "NULLABLE"},
+  {"name": "role",                 "type": "STRING",   "mode": "NULLABLE"},
+  {"name": "department",           "type": "STRING",   "mode": "NULLABLE"},
+  {"name": "is_active",            "type": "BOOLEAN",  "mode": "NULLABLE"},
+  {"name": "created_timestamp",    "type": "TIMESTAMP","mode": "NULLABLE"},
+  {"name": "last_login_timestamp", "type": "TIMESTAMP","mode": "NULLABLE"}
+]

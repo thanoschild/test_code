@@ -1,0 +1,13 @@
+[
+  {"name": "order_id",             "type": "STRING",   "mode": "REQUIRED"},
+  {"name": "contract_id",          "type": "STRING",   "mode": "REQUIRED"},
+  {"name": "company_id",           "type": "STRING",   "mode": "REQUIRED"},
+  {"name": "order_description",    "type": "STRING",   "mode": "NULLABLE"},
+  {"name": "order_amount",         "type": "NUMERIC",  "mode": "NULLABLE"},
+  {"name": "order_date",           "type": "DATE",     "mode": "NULLABLE"},
+  {"name": "approval_status",      "type": "STRING",   "mode": "NULLABLE"},
+  {"name": "approval_required_by", "type": "DATE",     "mode": "NULLABLE"},
+  {"name": "special_terms",        "type": "STRING",   "mode": "NULLABLE"},
+  {"name": "created_timestamp",    "type": "TIMESTAMP","mode": "NULLABLE"},
+  {"name": "last_updated_timestamp","type": "TIMESTAMP","mode": "NULLABLE"}
+]
