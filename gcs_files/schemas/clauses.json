@@ -7,7 +7,6 @@
   {"name": "is_standard_clause",    "type": "BOOLEAN",  "mode": "NULLABLE"},
   {"name": "compliance_required",   "type": "BOOLEAN",  "mode": "NULLABLE"},
   {"name": "effective_date",        "type": "DATE",     "mode": "NULLABLE"},
-  {"name": "expiration_date",       "type": "DATE",     "mode": "NULLABLE"},
   {"name": "created_timestamp",     "type": "TIMESTAMP","mode": "NULLABLE"},
   {"name": "last_updated_timestamp","type": "TIMESTAMP","mode": "NULLABLE"}
 ]
