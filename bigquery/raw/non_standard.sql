@@ -10,7 +10,7 @@ CREATE TABLE `project_name.helix_agiloft_raw.non_standard_orders` (
   special_terms STRING(1000),
   created_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
   last_updated_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
-  _metadata_insert_time TIMESTAMP,
-  _metadata_update_time TIMESTAMP,
-  _metadata_deleted STRING
+  `_metadata_insert_time` TIMESTAMP,
+  `_metadata_update_time` TIMESTAMP,
+  `_metadata_deleted` STRING
 );

@@ -10,7 +10,7 @@ CREATE TABLE `project_name.helix_agiloft_raw.users` (
   is_active BOOLEAN DEFAULT TRUE,
   created_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
   last_login_timestamp TIMESTAMP,
-  _metadata_insert_time TIMESTAMP,
-  _metadata_update_time TIMESTAMP,
-  _metadata_deleted STRING
+  `_metadata_insert_time` TIMESTAMP,
+  `_metadata_update_time` TIMESTAMP,
+  `_metadata_deleted` STRING
 );

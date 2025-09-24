@@ -9,7 +9,7 @@ CREATE TABLE `project_name.helix_agiloft_raw.company` (
   company_status STRING(20),
   created_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
   last_updated_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
-  _metadata_insert_time TIMESTAMP,
-  _metadata_update_time TIMESTAMP,
-  _metadata_deleted STRING
+  `_metadata_insert_time` TIMESTAMP,
+  `_metadata_update_time` TIMESTAMP,
+  `_metadata_deleted` STRING
 );
