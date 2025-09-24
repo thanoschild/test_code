@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS `project_name.contact_raw.contact_table` (
   `job_title` STRING,
   `source` STRING,
   `AADHAAR_NUMBER` STRING,
+  `PAN_NUMBER` STRING,
   `purpose` STRING,
   `created_at` TIMESTAMP,
   `updated_at` TIMESTAMP
