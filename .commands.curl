@@ -8,3 +8,9 @@ curl -X POST \
     "body": "Column phone_number not found inside the contact_table",
     "repo": "thanoschild/test_code"
   }'
+
+
+
+  curl -X POST "http://localhost:8080/api/v1/embed/github" \
+  -H "Content-Type: application/json" \
+  -d '{"repo": "thanoschild/test_code"}'
