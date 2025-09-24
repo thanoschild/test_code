@@ -69,7 +69,7 @@
                 "execution_type": "AUTHENTICATED_CLOUD_FUNCTION",
                 "config": {
                     "method": "POST",
-                    "url": "https://us-west1-it-helix-platform-dev.cloudfunction.net/agiloft-ingestion",
+                    "url": "https://us-west1-smart-pr.cloudfunction.net/agiloft-ingestion",
                     "headers": {
                         "Content-Type": "application/json"
                     }
