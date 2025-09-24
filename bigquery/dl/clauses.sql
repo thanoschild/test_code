@@ -1,6 +1,5 @@
 CREATE TABLE `project_name.helix_agiloft_dl.clauses` (
   clause_id STRING(50) NOT NULL,
-  contract_id STRING(50) NOT NULL,
   clause_type STRING(100) NOT NULL,
   clause_title STRING(300),
   clause_text STRING(5000),
