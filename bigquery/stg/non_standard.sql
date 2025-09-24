@@ -4,6 +4,7 @@ CREATE TABLE `project_name.helix_agiloft_stg.non_standard_orders` (
   company_id STRING(50) NOT NULL,
   order_description STRING(500),
   order_amount NUMERIC(12,2),
+  payment_type STRING(50),
   order_date DATE,
   approval_status STRING(30),
   approval_required_by DATE,
