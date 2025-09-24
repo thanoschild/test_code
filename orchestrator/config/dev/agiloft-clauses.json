@@ -19,7 +19,7 @@
                     "gcs_path": "gs://helix-agiloft-data-dev/ingestion/clauses",
                     "client_id": "ah91bh709ldright1",
                     "secret_key": "agiloft-dev-secret",
-                    "columns": "clause_id, contract_id, clause_type, clause_title, clause_text, is_standard_clause, compliance_required, effective_date, expiration_date, created_timestamp, last_updated_timestamp",
+                    "columns": "clause_id, contract_id, clause_type, clause_title, clause_text, is_standard_clause, compliance_required, effective_date, created_timestamp, last_updated_timestamp",
                     "api_endpoint": "https://mycompany.com/agiloft/tables/clauses"
                 },
                 "downstream_tasks": ["gcs2bq-agiloft-clauses"]
