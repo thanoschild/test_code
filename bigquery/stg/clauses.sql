@@ -1,7 +1,6 @@
 CREATE TABLE `smart-pr.legal_analytics_stg.clauses` (
   clause_id STRING(50) NOT NULL,
   contract_id STRING(50) NOT NULL,
-  clause_type STRING(100) NOT NULL,
   clause_title STRING(300),
   clause_text STRING(5000),
   is_standard_clause BOOLEAN DEFAULT FALSE,
