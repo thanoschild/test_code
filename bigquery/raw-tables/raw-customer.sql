@@ -4,6 +4,7 @@ CREATE OR REPLACE TABLE `project_name.raw_sourcetopay.customer` (
   `last_name` STRING,
   `email` STRING,
   `phone_number` STRING,
+  `website` STRING,
   `address` STRUCT<street STRING, city STRING, state STRING, postal_code STRING, country STRING>,
   `created_at` TIMESTAMP,
   `updated_at` TIMESTAMP,
