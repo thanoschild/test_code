@@ -21,6 +21,9 @@ BEGIN
       updated_at
       FROM `project_name.payment_set_raw.payment_tracker` 
       WHERE updated_at BETWEEN p_from_delta AND p_to_delta
+      AND user_name IS NOT NULL
+      AND event_data IS NOT NULL
+      AND region IS NOT NULL
   ) S
   ON T.integration_id = S.integration_id
   WHEN MATCHED THEN
