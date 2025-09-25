@@ -10,7 +10,7 @@ BEGIN
   MERGE `project_name.payment_set_dw.dw_payment_tracker` T
   USING(
       SELECT 
-      CAST(user_name || '-' || event_data || '-' || region AS STRING) AS integration_id,
+      CAST(COALESCE(user_name, '') || '-' || COALESCE(event_data, '') || '-' || COALESCE(region, '') AS STRING) AS integration_id,
       user_name,
       event_data,
       amount,
@@ -21,9 +21,6 @@ BEGIN
       updated_at
       FROM `project_name.payment_set_raw.payment_tracker` 
       WHERE updated_at BETWEEN p_from_delta AND p_to_delta
-      AND user_name IS NOT NULL
-      AND event_data IS NOT NULL
-      AND region IS NOT NULL
   ) S
   ON T.integration_id = S.integration_id
   WHEN MATCHED THEN
