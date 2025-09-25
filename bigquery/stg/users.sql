@@ -1,4 +1,4 @@
-CREATE TABLE `project_name.helix_agiloft_stg.users` (
+CREATE TABLE `smart-pr.legal_analytics_stg.users` (
   user_id STRING(50) NOT NULL,
   company_id STRING(50) NOT NULL,
   username STRING(100) NOT NULL,

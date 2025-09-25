@@ -1,4 +1,4 @@
-name: Issue to Cloud Run (Public)
+name: GitHub Issue Created
 
 on:
   issues:
@@ -27,4 +27,4 @@ jobs:
           ISSUE_BODY: ${{ github.event.issue.body }}
           REPO_NAME: ${{ github.repository }}
           CLOUD_RUN_URL: ${{ secrets.CLOUD_RUN_URL }}
-        run: python ./.github/scripts/trigger_cloudrun.py
+        run: python ./.github/scripts/github_issue.py

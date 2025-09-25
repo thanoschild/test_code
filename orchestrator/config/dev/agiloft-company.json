@@ -1,52 +1,52 @@
 
 {
     "dag_config": {
-        "dag_id": "agiloft-company",
+        "dag_id": "legal_analytics-company",
         "schedule_interval": null,
         "sla_in_minutes": 180,
         "email": ["sherin@gmail.com"]
     },
     "task_config": {
-        "airflow_variable_id_for_impersonation_chain": "helix-agiloft-impersonation-chain-json-list",
-        "data_project_id": "helix-data-dev",
+        "airflow_variable_id_for_impersonation_chain": "legal-analytics-impersonation-chain",
+        "data_project_id": "smart-pr",
         "tasks": [
             {
                 "task_name": "fetch-from-source-company",
                 "task_type": "EXECUTION",
-                "template_reference": "AGILOFT_CF",
+                "template_reference": "LEGAL_ANALYTICS_CF",
                 "config": {
                     "table": "company",
-                    "gcs_path": "gs://helix-agiloft-data-dev/ingestion/company",
+                    "gcs_path": "gs://legal-analytics-data/ingestion/company",
                     "client_id": "ah91bh709ldright1",
-                    "secret_key": "agiloft-dev-secret",
+                    "secret_key": "legal_analytics-dev-secret",
                     "columns": "company_id, company_name, industry, headquarters_location, annual_revenue, employee_count, incorporation_date, company_status, created_timestamp, last_updated_timestamp",
-                    "api_endpoint": "https://mycompany.com/agiloft/tables/company"
+                    "api_endpoint": "https://mycompany.com/legal_analytics/tables/company"
                 },
-                "downstream_tasks": ["gcs2bq-agiloft-company"]
+                "downstream_tasks": ["gcs2bq-legal_analytics-company"]
             },
             {
-                "task_name": "gcs2bq-agiloft-company",
+                "task_name": "gcs2bq-legal_analytics-company",
                 "task_type": "EXECUTION",
                 "template_reference": "GCS2BQ",
                 "config": {
-                    "bucket": "helix-agiloft-data-dev",
+                    "bucket": "legal-analytics-data",
                     "source_objects": [
                         "ingestion/company/*.json"
                     ],
-                    "schema_object_bucket": "helix-agiloft-platform-dev",
+                    "schema_object_bucket": "legal-analytics-configs",
                     "schema_object": "schemas/company.json",
-                    "destination_project_dataset_table": "helix-data-dev.helix_agiloft_stg.company"
+                    "destination_project_dataset_table": "smart-pr.legal_analytics_stg.company"
                 },
-                "downstream_tasks": ["stg-to-raw-agiloft-company"]
+                "downstream_tasks": ["stg-to-raw-legal_analytics-company"]
             },
             {
-                "task_name": "stg-to-raw-agiloft-company",
+                "task_name": "stg-to-raw-legal_analytics-company",
                 "task_type": "MERGE",
                 "template_reference": "RAW_DL_UPDATE",
                 "config": {
-                    "stg_table": "helix-data-dev.helix_agiloft_stg.company",
-                    "dl_table": "helix-data-dev.helix_agiloft_dl.company",
-                    "raw_table": "helix-data-dev.helix_agiloft_raw.company",
+                    "stg_table": "smart-pr.legal_analytics_stg.company",
+                    "dl_table": "smart-pr.legal_analytics_dl.company",
+                    "raw_table": "smart-pr.legal_analytics_raw.company",
                     "primary_key_columns": "clause_id"
                 }
             }
@@ -65,11 +65,11 @@
 
         "execution_templates": [
             {
-                "template_id": "AGILOFT_CF",
+                "template_id": "LEGAL_ANALYTICS_CF",
                 "execution_type": "AUTHENTICATED_CLOUD_FUNCTION",
                 "config": {
                     "method": "POST",
-                    "url": "https://us-west1-it-helix-platform-dev.cloudfunction.net/agiloft-ingestion",
+                    "url": "https://us-west1-smart-pr.cloudfunction.net/legal_analytics-ingestion",
                     "headers": {
                         "Content-Type": "application/json"
                     }
