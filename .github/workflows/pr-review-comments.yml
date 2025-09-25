@@ -5,16 +5,30 @@ on:
     types: [submitted]
 
 jobs:
-  print-review-details:
+  call-cloud-run:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Print review info
-        run: |
-          echo "PR Number: ${{ github.event.pull_request.number }}"
-          echo "Repository: ${{ github.repository }}"
-          echo "Branch (head): ${{ github.event.pull_request.head.ref }}"
-          echo "Target branch (base): ${{ github.event.pull_request.base.ref }}"
-          echo "Reviewer: ${{ github.event.review.user.login }}"
-          echo "Review State: ${{ github.event.review.state }}"
-          echo "Review Body: ${{ github.event.review.body }}"
-          echo "PR URL: ${{ github.event.pull_request.html_url }}"
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Dependencies
+        run: pip install requests
+
+      - name: Run Python script
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          REPO_NAME: ${{ github.repository }}
+          PR_BRANCH: ${{ github.event.pull_request.head.ref }}
+          PR_BASE_BRANCH: ${{ github.event.pull_request.base.ref }}
+          REVIEWER: ${{ github.event.review.user.login }}
+          REVIEW_STATE: ${{ github.event.review.state }}
+          REVIEW_BODY: ${{ github.event.review.body }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          CLOUD_RUN_URL: ${{ secrets.CLOUD_RUN_URL }}
+        run: python ./.github/scripts/pr_review.py
