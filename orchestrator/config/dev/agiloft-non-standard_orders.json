@@ -1,46 +1,46 @@
 
 {
     "dag_config": {
-        "dag_id": "agiloft-non_standard_orders",
+        "dag_id": "legal_analytics-non_standard_orders",
         "schedule_interval": null,
         "sla_in_minutes": 180,
         "email": ["sherin@gmail.com"]
     },
     "task_config": {
-        "airflow_variable_id_for_impersonation_chain": "helix-agiloft-impersonation-chain-json-list",
-        "data_project_id": "helix-data-dev",
+        "airflow_variable_id_for_impersonation_chain": "legal-analytics-impersonation-chain",
+        "data_project_id": "smart-pr",
         "tasks": [
             {
                 "task_name": "fetch-from-source-non_standard_orders",
                 "task_type": "EXECUTION",
-                "template_reference": "AGILOFT_CF",
+                "template_reference": "LEGAL_ANALYTICS_CF",
                 "config": {
                     "table": "non_standard_orders",
-                    "gcs_path": "gs://helix-agiloft-data-dev/ingestion/non_standard_orders",
+                    "gcs_path": "gs://legal-analytics-data/ingestion/non_standard_orders",
                     "client_id": "ah91bh709ldright1",
-                    "secret_key": "agiloft-dev-secret",
+                    "secret_key": "legal_analytics-dev-secret",
                     "columns": "order_id, contract_id, company_id, order_description, order_amount, order_date, approval_status, approval_required_by, special_terms, created_timestamp, last_updated_timestamp",
-                    "api_endpoint": "https://mycompany.com/agiloft/tables/non_standard_orders"
+                    "api_endpoint": "https://mycompany.com/legal_analytics/tables/non_standard_orders"
                 },
-                "downstream_tasks": ["gcs2bq-agiloft-non_standard_orders"]
+                "downstream_tasks": ["gcs2bq-legal_analytics-non_standard_orders"]
             },
             {
-                "task_name": "gcs2bq-agiloft-non_standard_orders",
+                "task_name": "gcs2bq-legal_analytics-non_standard_orders",
                 "task_type": "EXECUTION",
                 "template_reference": "GCS2BQ",
                 "config": {
-                    "bucket": "helix-agiloft-data-dev",
+                    "bucket": "legal-analytics-data",
                     "source_objects": [
                         "ingestion/non_standard_orders/*.json"
                     ],
-                    "schema_object_bucket": "helix-agiloft-platform-dev",
+                    "schema_object_bucket": "legal-analytics-configs",
                     "schema_object": "schemas/non_standard_orders.json",
                     "destination_project_dataset_table": "smart-pr.legal_analytics_stg.non_standard_orders"
                 },
-                "downstream_tasks": ["stg-to-raw-agiloft-non_standard_orders"]
+                "downstream_tasks": ["stg-to-raw-legal_analytics-non_standard_orders"]
             },
             {
-                "task_name": "stg-to-raw-agiloft-non_standard_orders",
+                "task_name": "stg-to-raw-legal_analytics-non_standard_orders",
                 "task_type": "MERGE",
                 "template_reference": "RAW_DL_UPDATE",
                 "config": {
@@ -65,11 +65,11 @@
 
         "execution_templates": [
             {
-                "template_id": "AGILOFT_CF",
+                "template_id": "LEGAL_ANALYTICS_CF",
                 "execution_type": "AUTHENTICATED_CLOUD_FUNCTION",
                 "config": {
                     "method": "POST",
-                    "url": "https://us-west1-it-helix-platform-dev.cloudfunction.net/agiloft-ingestion",
+                    "url": "https://us-west1-smart-pr.cloudfunction.net/legal_analytics-ingestion",
                     "headers": {
                         "Content-Type": "application/json"
                     }

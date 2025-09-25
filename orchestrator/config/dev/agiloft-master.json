@@ -1,56 +1,56 @@
 {
     "dag_config": {
-        "dag_id": "agiloft-master",
+        "dag_id": "legal_analytics-master",
         "schedule_interval": "0 0 * * *",
         "sla_in_minutes": 180,
         "email": ["sherin@gmail.com"]
     },
     "task_config": {
-        "airflow_variable_id_for_impersonation_chain": "helix-agiloft-impersonation-chain-json-list",
-        "data_project_id": "helix-data-dev",
+        "airflow_variable_id_for_impersonation_chain": "legal-analytics-impersonation-chain",
+        "data_project_id": "smart-pr",
         "tasks": [
             {
-                "task_name": "trigger-agiloft-clauses",
+                "task_name": "trigger-legal_analytics-clauses",
                 "task_type": "EXECUTION",
                 "template_reference": "TRIGGER_SUBDAG",
                 "config": {
-                    "trigger_dag_id": "agiloft-clauses"
+                    "trigger_dag_id": "legal_analytics-clauses"
                 },
                 "downstream_tasks": []
             },
             {
-                "task_name": "trigger-agiloft-company",
+                "task_name": "trigger-legal_analytics-company",
                 "task_type": "EXECUTION",
                 "template_reference": "TRIGGER_SUBDAG",
                 "config": {
-                    "trigger_dag_id": "agiloft-company"
+                    "trigger_dag_id": "legal_analytics-company"
                 },
                 "downstream_tasks": []
             },
             {
-                "task_name": "trigger-agiloft-contract",
+                "task_name": "trigger-legal_analytics-contract",
                 "task_type": "EXECUTION",
                 "template_reference": "TRIGGER_SUBDAG",
                 "config": {
-                    "trigger_dag_id": "agiloft-contract"
+                    "trigger_dag_id": "legal_analytics-contract"
                 },
                 "downstream_tasks": []
             },
             {
-                "task_name": "trigger-agiloft-non_standard",
+                "task_name": "trigger-legal_analytics-non_standard",
                 "task_type": "EXECUTION",
                 "template_reference": "TRIGGER_SUBDAG",
                 "config": {
-                    "trigger_dag_id": "agiloft-non_standard"
+                    "trigger_dag_id": "legal_analytics-non_standard"
                 },
                 "downstream_tasks": []
             },
             {
-                "task_name": "trigger-agiloft-users",
+                "task_name": "trigger-legal_analytics-users",
                 "task_type": "EXECUTION",
                 "template_reference": "TRIGGER_SUBDAG",
                 "config": {
-                    "trigger_dag_id": "agiloft-users"
+                    "trigger_dag_id": "legal_analytics-users"
                 },
                 "downstream_tasks": []
             }
