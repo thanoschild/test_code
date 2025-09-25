@@ -9,8 +9,8 @@
   },
 
   "cloud-function": {
-    "agiloft-ingestion": {
-      "job_name": "agiloft-ingestion",
+    "legal_analytics-ingestion": {
+      "job_name": "legal_analytics-ingestion",
       "region": "us-west1",
       "trigger": "http",
       "gen": "2",
@@ -26,7 +26,7 @@
   "gcs": {
     "stg_schemas": {
       "path": "gcs_files",
-      "target": "gs://helix-agiloft-platform-dev/schemas",
+      "target": "gs://legal-analytics-configs/schemas",
       "deploy": "true"
     }
   }
