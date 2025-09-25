@@ -35,7 +35,7 @@
                     ],
                     "schema_object_bucket": "helix-agiloft-platform-dev",
                     "schema_object": "schemas/non_standard_orders.json",
-                    "destination_project_dataset_table": "helix-data-dev.helix_agiloft_stg.non_standard_orders"
+                    "destination_project_dataset_table": "smart-pr.legal_analytics_stg.non_standard_orders"
                 },
                 "downstream_tasks": ["stg-to-raw-agiloft-non_standard_orders"]
             },
@@ -44,9 +44,9 @@
                 "task_type": "MERGE",
                 "template_reference": "RAW_DL_UPDATE",
                 "config": {
-                    "stg_table": "helix-data-dev.helix_agiloft_stg.non_standard_orders",
-                    "dl_table": "helix-data-dev.helix_agiloft_dl.non_standard_orders",
-                    "raw_table": "helix-data-dev.helix_agiloft_raw.non_standard_orders",
+                    "stg_table": "smart-pr.legal_analytics_stg.non_standard_orders",
+                    "dl_table": "smart-pr.legal_analytics_dl.non_standard_orders",
+                    "raw_table": "smart-pr.legal_analytics_raw.non_standard_orders",
                     "primary_key_columns": "clause_id"
                 }
             }
